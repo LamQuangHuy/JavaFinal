@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Account;
-import com.example.demo.model.AccountService;
+import com.example.demo.service.AccountService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,18 +71,26 @@ public class AccountController {
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute Account account,Model model) {
-
-
-        //validate username đã tồn tại chưa
-        if(sv.findByUsername(account.getUsername()) != null) {
+    public String processRegistration(@ModelAttribute Account account,Model model)
+    {
+        // Validate username whether it is exist
+        Account findAcc = sv.findByUsername(account.getUsername());
+        if (findAcc != null) {
             model.addAttribute("error", "Mật khẩu không chính xác");
             return "register";
         }
+
+        // TODO: handle send gmail
+        if (!findAcc.isRegisterStatus())
+        {
+
+            return "login";
+        }
+
         sv.addAccount(account);
         model.addAttribute("success", true);
 
-        //kiểm tra các lỗi
+        // Check other errors
         return "index";
 
     }
