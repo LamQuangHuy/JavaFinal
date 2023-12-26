@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,12 +58,13 @@
         <h1>Welcome to the Homepage</h1>
         <p>Choose a page to navigate:</p>
         <ul>
-            <li><a href="/product">Product Management</a></li>
-            <li><a href="/saleManagement">Customer Management</a></li>
-            <li><a href="/staffManagement">Staff Management</a></li>
+            <li th:if="${role == 'admin'}"><a href="/admin/products">Products Management</a></li>
+            <li th:if="${role != 'admin'}"><a href="/products">Products Management</a></li>
+            <li th:if="${role == 'admin'}"><a href="/admin/employees">Employees Management</a></li>
+            <li th:if="${role != 'admin'}"><a href="/sale">Sale Management</a></li>
             <li><a href="/profile">Profile Management</a></li>
-            <li><a href="/change_password">Change Password</a></li>
-            <li><a href="/register">Create New Account</a></li>
+            <li><a href="/report">Report Management</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </div>
     <div th:if="${success}">
