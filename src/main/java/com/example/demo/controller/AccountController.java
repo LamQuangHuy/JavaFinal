@@ -63,7 +63,7 @@ public class AccountController {
     Files.write(fileNameAndPath, file.getBytes());
 
     Account account = (Account) session.getAttribute("loggedInAccount");
-    String dynamicPath = "/uploads/" + file.getOriginalFilename();
+    String dynamicPath = "./uploads/" + file.getOriginalFilename();
     account.setAvatar(dynamicPath);
     accountRepo.save(account);
     session.setAttribute("loggedInAccount", account);

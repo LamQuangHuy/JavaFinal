@@ -118,7 +118,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="account: ${accounts}">
+                        <tr th:each="account: ${accounts}" th:if="${account.id != 1}">
                           <td th:text="${account.id}"></td>
                           <td style="width: 10%;"><img th:src="${account.avatar}" alt="" width="50%"></td>
                           <td th:text="${account.name}"></td>

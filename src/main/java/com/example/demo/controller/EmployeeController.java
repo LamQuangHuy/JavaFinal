@@ -64,7 +64,8 @@ public class EmployeeController {
   }
 
   @GetMapping("/order/{id}/invoice")
-  public String getOrderInvoice(@PathVariable("id") int id, HttpSession session, RedirectAttributes redirAttrs, Model model) {
+  public String getOrderInvoice(@PathVariable("id") int id, HttpSession session, RedirectAttributes redirAttrs,
+      Model model) {
     Account account = (Account) session.getAttribute("loggedInAccount");
     if (account == null) {
       return "redirect:/auth/login";
@@ -130,6 +131,7 @@ public class EmployeeController {
     Orders order = new Orders();
     order.setCustomerId(customerId);
     order.setTotalPrice(totalPrice);
+    orderRepo.save(order);
 
     String[] productIdSplit = productIds.split(",");
     String[] productPriceSplit = productPrices.split(",");

@@ -160,7 +160,7 @@
               </thead>
               <tbody>
                 <tr th:each="order, orderStat : ${orders}">
-                  <td th:text="${orderStat.index}"></td>
+                  <td th:text="${orderStat.index + 1}"></td>
                   <td th:text="${customers[orderStat.index].name}"></td>
                   <td th:text="${numOfProducts[orderStat.index]}"></td>
                   <td
@@ -181,7 +181,12 @@
             </table>
           </div>
 
-          <p th:if="${orders != null and #lists.size(orders) == 0}" class="text-danger mt-3">There is no any orders at this time.</p>
+          <p
+            th:if="${orders != null and #lists.size(orders) == 0}"
+            class="text-danger mt-3"
+          >
+            There is no any orders at this time.
+          </p>
 
           <a href="/" class="btn btn-primary mt-3" style="float: inline-end">
             Back to home

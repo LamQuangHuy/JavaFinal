@@ -278,7 +278,6 @@
         }
 
         function displayHistoryOrders(data) {
-          console.log(data.length);
           if (data && data.length > 0) {
             $('#customer-session').append(`<hr /><h5>Order history</h5>`);
             $('#history-list').html('');
@@ -359,7 +358,7 @@
             if (res < 0) {
               $('#error-msg').text("The customer's given money is not enough.");
             } else {
-              $('#giveback').text(res);
+              $('#giveback').text(formatCurrency(res));
             }
           } else {
             $('#error-msg').text("Please enter customer's given money.");
